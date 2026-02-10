@@ -1,0 +1,19 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{MATH328 Reference}
+\author{Krish A. Patel}
+
+\begin{document}
+\maketitle
+
+\newenvironment{amatrix}[1]{%
+  \begin{array}{@{}*{#1}{c}|c@{}}
+  }{%
+  \end{array}
+}
+
+\input{notes/linear_algebra}
+\end{document}

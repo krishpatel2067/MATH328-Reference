@@ -1,0 +1,45 @@
+# Logs and status files
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.blg
+*.bbl
+*.idx
+*.ind
+*.ilg
+*.out
+*.nav
+*.snm
+*.vrb
+*.dvi
+*.ps
+*.bcf
+*.xml
+*_notes.bib # Specific for some packages
+
+# Compilation artifacts
+*.pdf
+*.spl
+*.spl.old
+
+# Temporary files
+*.backup
+*.bak
+*.tmp
+*.swp
+*.lock
+
+# Editor-specific files (optional, can be in a global gitignore)
+.texlab/ # TeXlab language server cache
+.idea/ # JetBrains IDEs
+
+# If using BibTeX or Biber
+*.run.xml
+
+# Uncomment the next line to ignore all files ending in .pdf except one named "afile.pdf"
+!main.pdf
