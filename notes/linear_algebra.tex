@@ -1,4 +1,82 @@
 \section{Linear Algebra}
 \begin{itemize}
-    \item How to find inverses uses cofactors
+    % consistency and rank
+    \item \textbf{Matrix inverses}:
+          \begin{equation*}
+              M^{-1} = \frac{1}{\det M} C^T
+          \end{equation*}
+          where $C$ is the matrix of cofactors of $M$. Remember that to find the cofactor $C_{ij}$, you need to find the determinant of the matrix $M$ with the $i$-th row and $j$-th column removed, and then multiply it by $(-1)^{i+j}$.
+    \item \textbf{Rotation matrices}:
+          \begin{equation*}
+              R(\theta) = \begin{pmatrix}
+                  \cos \theta & -\sin \theta \\
+                  \sin \theta & \cos \theta
+              \end{pmatrix}
+          \end{equation*}
+          Note that $R(\theta)$ is an orthogonal matrix, i.e., $R(\theta)^{-1} = R(\theta)^T$.
+    \item \textbf{Central conic equation in matrix form}:
+          \begin{align*}
+              Ax^2 + 2Hxy + By^2 = K
+          \end{align*}
+          \begin{equation*}
+              \begin{pmatrix}
+                  x & y
+              \end{pmatrix}
+              \begin{pmatrix}
+                  A & H \\
+                  H & B
+              \end{pmatrix}
+              \begin{pmatrix}
+                  x \\
+                  y
+              \end{pmatrix}
+              = K
+          \end{equation*}
+    \item \textbf{Quadric surface equation in matrix form}:
+          \begin{align*}
+              Ax^2 + By^2 + Cz^2 + 2Dxy + 2Exz + 2Fyz = K
+          \end{align*}
+          \begin{equation*}
+              \begin{pmatrix}
+                  x & y & z
+              \end{pmatrix}
+              \begin{pmatrix}
+                  A & D & E \\
+                  D & B & F \\
+                  E & F & C
+              \end{pmatrix}
+              \begin{pmatrix}
+                  x \\
+                  y \\
+                  z
+              \end{pmatrix}
+              = K
+          \end{equation*}
+          Instead of memorizing the formulas, remember that the matrix is symmetric and the diagonal entries are the coefficients of the squared terms, and the off-diagonal entries are half the coefficients of the cross terms. Also, the indices of the cross terms match the variables. For example, the term $a_{12}$ corresponds to the cross term $xy$ ($x$ being $1$ and $y$ being 2).
+    \item \textbf {Rotating conic/quadric to principal axes}:
+          \begin{align*}
+              \begin{pmatrix}
+                  x' & y'
+              \end{pmatrix}
+              CMC^{-1}
+              \begin{pmatrix}
+                  x' \\ y'
+              \end{pmatrix}
+               & = K \\
+              \begin{pmatrix}
+                  x' & y'
+              \end{pmatrix}
+              D
+              \begin{pmatrix}
+                  x' \\ y'
+              \end{pmatrix}
+               & = K
+          \end{align*}
+          where
+          \begin{itemize}
+              \item $M$ is the matrix of the coefficients of the conic or quadratic equation,
+              \item $D$ is the diagonal matrix of the eigenvalues of $M$,
+              \item $C$ is the matrix of the eigenvectors of $M$.
+          \end{itemize}
+          Note that if $M$ is symmetric, then $C$ is orthogonal, i.e., $C^{-1} = C^T$.
 \end{itemize}
