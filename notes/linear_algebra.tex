@@ -1,6 +1,66 @@
 \section{Linear Algebra}
 \begin{itemize}
-    % consistency and rank
+    \item \textbf{Elementary row operations}:
+          \begin{itemize}
+              \item Swap two rows
+              \item Multiply a row by a nonzero scalar
+              \item Add a multiple of one row to another row
+          \end{itemize}
+          These help solve matrix equations such as $A\mathbf{x} = \mathbf{b}$.
+    \item The \textbf{rank} of a matrix is the number of non-zero rows in the echelon form of a matrix.
+    \item Consistency and uniqueness of solutions of a matrix equation $A\mathbf{x}=\mathbf{b}$, where $n$ is the number of columns in $A$:
+          \begin{itemize}
+              \item $\text{rank}(A) < \text{rank}(A~|~b) \implies$ \textbf{inconsistent}.
+              \item $\text{rank}(A) = \text{rank}(A~|~b) = n \implies$ \textbf{unique solution}.
+              \item $\text{rank}(A) = \text{rank}(A~|~b) = R < n \implies$ \textbf{infinitely many solutions}, with $n-R$ free variables.
+          \end{itemize}
+    \item A set of vectors $\left\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\right\}$ is \textbf{linearly independent} if the only solution to the equation
+          \begin{equation*}
+              c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \dots + c_n\mathbf{v}_n = \mathbf{0}
+          \end{equation*}
+          is $c_1 = c_2 = \dots = c_n = 0$. In other words,
+          \begin{equation*}
+              \text{rank}\begin{pmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \dots & \mathbf{v}_n \end{pmatrix} = n,
+          \end{equation*}
+          meaning
+          \begin{equation*}
+              A\mathbf{x} = \mathbf{0}
+          \end{equation*}
+          has only the trivial solution $\mathbf{x} = \mathbf{0}$.
+    \item \textbf{Computing determinants}:
+          \begin{itemize}
+              \item $n = 1$: $A = \begin{pmatrix}
+                            a
+                        \end{pmatrix}$, $\det A = a$
+              \item $n = 2$: $A = \begin{pmatrix}
+                            a & b \\
+                            c & d
+                        \end{pmatrix}$, $\det A = ad - bc$
+              \item $n \ge 3$: The determinant can be computed by expanding the minor determinants ($M_{ij}$) of the elements ($a_{ij}$) of \emph{any} row or column:
+                    \begin{equation*}
+                        \det A = \sum_{j=1}^n (-1)^{i+j} a_{ij} \det(M_{ij})
+                    \end{equation*}
+          \end{itemize}
+    \item \textbf{Properties of determinants}:
+          \begin{itemize}
+              \item $k\det A = \det B$ if a row or column of $B$ is $k$ times the corresponding row or column of $A$.
+              \item $\det(kA) = k^n \det A$ if $A$ is an $n \times n$ matrix.
+              \item $det A = 0$ if
+                    \begin{itemize}
+                        \item $A$ has a row or column of zeros,
+                        \item $A$ has a row or column that is a multiple of another row or column, or
+                        \item $A$ is not invertible.
+                    \end{itemize}
+              \item $\det B = (-1)^r \det A$ if $B$ is obtained from $A$ by swapping two rows or columns $r$ times.
+              \item $\det(A^T) = \det(A)$
+              \item $\det A = \det U$ where $U$ is the upper triangular matrix obtained from $A$ by elementary row operations. $\det U$ is also the product of the diagonal entries of $U$.
+              \item $\det(AB) = \det(A)\det(B)$
+          \end{itemize}
+    \item \textbf{Cramer's Rule}: For a system of linear equations $A\mathbf{x} = \mathbf{b}$, the solution for $x_i$ is given by
+          \begin{equation*}
+              x_i = \frac{\det A_i}{\det A}
+          \end{equation*}
+          where $A_i$ is the matrix obtained from $A$ by replacing the $i$-th column with $\mathbf{b}$. Note that this only works when $\det A \neq 0$.
     \item \textbf{Matrix inverses}:
           \begin{equation*}
               M^{-1} = \frac{1}{\det M} C^T
