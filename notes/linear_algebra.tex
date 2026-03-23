@@ -14,7 +14,7 @@
               \item $\text{rank}(A) = \text{rank}(A~|~b) = n \implies$ \textbf{unique solution}.
               \item $\text{rank}(A) = \text{rank}(A~|~b) = R < n \implies$ \textbf{infinitely many solutions}, with $n-R$ free variables.
           \end{itemize}
-    \item A set of vectors $\left\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\right\}$ is \textbf{linearly independent} if the only solution to the equation
+    \item A set of vectors $S = \left\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\right\}$ is \textbf{linearly independent} if the only solution to the equation
           \begin{equation*}
               c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \dots + c_n\mathbf{v}_n = \mathbf{0}
           \end{equation*}
@@ -27,6 +27,9 @@
               A\mathbf{x} = \mathbf{0}
           \end{equation*}
           has only the trivial solution $\mathbf{x} = \mathbf{0}$.
+
+          % TODO
+          A set of vectors can be placed as columns into a matrix $A$, and $\text{rank}(A)$ is the dimension of the vector space spanned by the vectors.
     \item \textbf{Computing determinants}:
           \begin{itemize}
               \item $n = 1$: $A = \begin{pmatrix}
@@ -61,19 +64,74 @@
               x_i = \frac{\det A_i}{\det A}
           \end{equation*}
           where $A_i$ is the matrix obtained from $A$ by replacing the $i$-th column with $\mathbf{b}$. Note that this only works when $\det A \neq 0$.
-    \item \textbf{Matrix inverses}:
+    \item \textbf{Linear functions and operators}: A function or operator $T(\mathbf{x}) = A\mathbf{x}$ is linear iff
+          \begin{itemize}
+              \item $T(\mathbf{x} + \mathbf{y}) = T(\mathbf{x}) + T(\mathbf{y})$ for any vectors $\mathbf{x}$ and $\mathbf{y}$, and
+              \item $T(c\mathbf{x}) = cT(\mathbf{x})$ for any scalar $c$ and vector $\mathbf{x}$.
+          \end{itemize}
+    \item The \textbf{zero matrix} is a matrix of all zeros.
+    \item The \textbf{identity matrix} $I_n$ is a square matrix of all ones on the main diagonal and zeros elsewhere.
+    \item \textbf{Matrix multiplication}: The product of two matrices $A$ and $B$ is defined as
           \begin{equation*}
-              M^{-1} = \frac{1}{\det M} C^T
+              AB = \begin{pmatrix}
+                  \sum_{k=1}^n a_{ik}b_{kj}
+              \end{pmatrix}
           \end{equation*}
-          where $C$ is the matrix of cofactors of $M$. Remember that to find the cofactor $C_{ij}$, you need to find the determinant of the matrix $M$ with the $i$-th row and $j$-th column removed, and then multiply it by $(-1)^{i+j}$.
-    \item \textbf{Rotation matrices}:
+          Note: the inner dimensions must match for matrix multiplication to be defined. Matrix multiplication is \emph{not} commutative, i.e., $AB \neq BA$ n general. The \textbf{commutator} of two matrices $A$ and $B$ is defined as
+          \begin{equation*}
+              [A, B] = AB - BA
+          \end{equation*}
+          If $[A, B] = 0$, then $A$ and $B$ \textbf{commute}.
+    \item The \textbf{matrix inverse} $A^{-1}$ of $A$ is such that $AA^{-1} = A^{-1}A = I$. It can be computed via
+          \begin{equation*}
+              A^{-1} = \frac{1}{\det A} C^T\text{,}
+          \end{equation*}
+          where $C$ is the matrix of cofactors of $A$. Remember that to find the cofactor $C_{ij}$, you need to find the determinant of the matrix $A$ with the $i$-th row and $j$-th column removed, and then multiply it by $(-1)^{i+j}$.
+
+          The matrix inverse can also be computed by augmenting the matrix $A$ with the identity matrix $I$ and performing elementary row operations until the left side is the identity matrix. The right side will then be the inverse of $A$.
+
+          Not all matrices are invertible. A matrix is \textbf{invertible} iff its determinant is non-zero. In other words, $A$ is invertible iff $A\mathbf{x} = \mathbf{b}$ has a unique solution for any $\mathbf{b}$.
+    \item An \textbf{orthogonal matrix} $Q$ is a square matrix such that $Q^TQ = QQ^T = I$. The columns (and rows) of an orthogonal matrix form an orthonormal basis, i.e., they are orthogonal to each other and have unit length. $\det Q = \pm 1$.
+          \begin{itemize}
+              \item If $\det Q = 1$, then $Q$ is a rotation matrix.
+              \item If $\det Q = -1$, then $Q$ is a reflection matrix.
+          \end{itemize}
+    \item A \textbf{rotation matrix} $R(\theta)$ performs a counter-clockwise rotation by angle $\theta$ and is given by
           \begin{equation*}
               R(\theta) = \begin{pmatrix}
                   \cos \theta & -\sin \theta \\
                   \sin \theta & \cos \theta
-              \end{pmatrix}
+              \end{pmatrix}\text{.}
           \end{equation*}
-          Note that $R(\theta)$ is an orthogonal matrix, i.e., $R(\theta)^{-1} = R(\theta)^T$.
+          Note that $R(\theta)$ is an \textbf{orthogonal matrix}. Also note that $R(\theta)^T$ represents a clockwise rotation by angle $\theta$.
+
+          Applying $R(\theta)$ to the standard basis vectors yields the rotated basis vectors.
+
+          An example of a rotation matrix in 3D is
+          \begin{equation*}
+              R(\theta) = \begin{pmatrix}
+                  \cos \theta  & 0 & \sin \theta \\
+                  0            & 1 & 0           \\
+                  -\sin \theta & 0 & \cos \theta \\
+              \end{pmatrix}\text{.}
+          \end{equation*}
+          Note that $R(\theta)$ is a passive transformation (corresponding to the $-\sin\theta$ in the bottom-left entry) about the $y$-axis (corresponding to the 2nd row matching $I_3$).
+    \item A transformation is an \textbf{active transformation} if it transforms the \emph{vector} $\mathbf{x}$ to a new vector $\mathbf{y}$ in the \emph{same} coordinate system. For example, $A$ below rotates the vector $\mathbf{x}$ counter-clockwise by angle $\theta$ to $\mathbf{y}$:
+          \begin{align*}
+              \mathbf{y} & = A\mathbf{x}              \\
+              A          & = \begin{pmatrix}
+                                 \cos\theta & -\sin\theta \\
+                                 \sin\theta & \cos\theta
+                             \end{pmatrix}
+          \end{align*}
+    \item A transformation is a \textbf{passive transformation} if it transforms the \emph{coordinate system} (e.g., from unprimed to primed) \emph{without} changing the vector $\mathbf{x}$ (i.e., $\mathbf{x} = \mathbf{x}'$). For example, $A$ below rotates the coordinate system counter-clockwise by angle $\theta$:
+          \begin{align*}
+              \mathbf{x}' & = A\mathbf{x}              \\
+              A           & = \begin{pmatrix}
+                                  \cos\theta  & \sin\theta \\
+                                  -\sin\theta & \cos\theta
+                              \end{pmatrix}
+          \end{align*}
     \item \textbf{Central conic equation in matrix form}:
           \begin{align*}
               Ax^2 + 2Hxy + By^2 = K
