@@ -1,24 +1,98 @@
 \section{Vector Analysis}
+\subsection{Triple Scalar Product}
+\begin{equation*}
+    \mathbf{A}\cdot(\mathbf{B} \times \mathbf{C}) =
+    \left|\begin{matrix}
+        A_x & A_y & A_z \\
+        B_x & B_y & B_z \\
+        C_x & C_y & C_z
+    \end{matrix}\right|
+\end{equation*}
+Note:
 \begin{itemize}
-    \item \textbf{Triple scalar product}:
-          \begin{equation*}
-              \mathbf{A}\cdot(\mathbf{B} \times \mathbf{C}) =
-              \left|\begin{matrix}
-                  A_x & A_y & A_z \\
-                  B_x & B_y & B_z \\
-                  C_x & C_y & C_z
-              \end{matrix}\right|
-          \end{equation*}
-          Note:
-          \begin{itemize}
-              \item Performing an even number of swaps on the determinant results in the same answer, whereas performing an odd number of swaps simply results in an answer of the opposite sign.
-              \item Geometrically, the triple scalar product represents the volume of a parallelopiped formed by $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$.
-          \end{itemize}
-    \item \textbf{Triple vector product}:
-          \begin{equation*}
-              \mathbf{A} \times (\mathbf{B} \times \mathbf{C})=(\mathbf{A} \cdot \mathbf{C})\mathbf{B} - (\mathbf{A} \cdot \mathbf{B})\mathbf{C}
-          \end{equation*}
-          To remember this formula, the right hand side is a linear combination of the vectors in the parentheses on the left hand side. The coefficients are the outside vector dotted with each of the inside vectors. Both terms have $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$ exactly once. Finally, the positive term on the right hand side belongs to the vector in the middle on the left hand side ($\mathbf{B}$ in this case).
+    \item Performing an even number of swaps on the determinant results in the same answer, whereas performing an odd number of swaps simply results in an answer of the opposite sign.
+    \item Geometrically, the triple scalar product represents the volume of a parallelopiped formed by $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$.
+\end{itemize}
+\subsection{Triple Vector Product}
+\begin{equation*}
+    \mathbf{A} \times (\mathbf{B} \times \mathbf{C})=\mathbf{B}(\mathbf{A} \cdot \mathbf{C}) - \mathbf{C}(\mathbf{A} \cdot \mathbf{B})
+\end{equation*}
+To remember this formula (beyond the mnemonic BAC-CAB), the right hand side is a linear combination of the vectors in the parentheses on the left hand side. The coefficients are the outside vector dotted with each of the inside vectors. Both terms have $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$ exactly once. Finally, the positive term on the right hand side belongs to the vector in the middle on the left hand side ($\mathbf{B}$ in this case).
+
+\subsection{Gradient}
+
+In rectangular coordinates:
+\begin{equation*}
+    \bm{\nabla} f = \text{grad}~f = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j} + \frac{\partial f}{\partial z}\mathbf{k}
+\end{equation*}
+
+where $f$ is a scalar field. Note that $\bm{\nabla}f$
+\begin{itemize}
+    \item is a vector field.
+    \item points in the direction of the greatest rate of increase of $f$.
+    \item is perpendicular to the surface $f = c$ for any constant $c$.
+\end{itemize}
+
+In cylindrical coordinates:
+\begin{equation*}
+    \bm{\nabla} f = \text{grad}~f = \frac{\partial f}{\partial r}\mathbf{e}_r + \frac{1}{r}\frac{\partial f}{\partial \theta}\mathbf{e}_\theta + \frac{\partial f}{\partial z}\mathbf{e}_z
+\end{equation*}
+
+In spherical coordinates:
+\begin{equation*}
+    \bm{\nabla} f = \text{grad}~f = \frac{\partial f}{\partial r}\mathbf{e}_r + \frac{1}{r}\frac{\partial f}{\partial \theta}\mathbf{e}_\theta + \frac{1}{r\sin\theta}\frac{\partial f}{\partial \phi}\mathbf{e}_\phi
+\end{equation*}
+
+\subsection{Directional Derivative}
+
+\begin{equation*}
+    \frac{d\phi}{ds} = \bm{\nabla} \phi \cdot \mathbf{u}
+\end{equation*}
+
+where $\mathbf{u}$ is the unit vector in the direction of differentiation.
+
+\subsection{Divergence}
+
+In rectangular coordinates:
+\begin{equation*}
+    \bm{\nabla} \cdot \mathbf{V} = \text{div}~\mathbf{V} = \frac{\partial V_x}{\partial x} + \frac{\partial V_y}{\partial y} + \frac{\partial V_z}{\partial z}
+\end{equation*}
+
+where $\mathbf{V}$ is a vector field. Note that $\bm{\nabla}\cdot\mathbf{V}$ is a scalar field.
+
+In cylindrical coordinates:
+\begin{equation*}
+    \bm{\nabla} \cdot \mathbf{V} = \text{div}~\mathbf{V} = \frac{1}{r}\frac{\partial}{\partial r}(rV_r) + \frac{1}{r}\frac{\partial V_\theta}{\partial \theta} + \frac{\partial V_z}{\partial z}
+\end{equation*}
+
+In spherical coordinates:
+\begin{equation*}
+    \bm{\nabla} \cdot \mathbf{V} = \text{div}~\mathbf{V} = \frac{1}{r^2}\frac{\partial}{\partial r}(r^2V_r) + \frac{1}{r\sin\theta}\frac{\partial}{\partial \theta}(\sin\theta V_\theta) + \frac{1}{r\sin\theta}\frac{\partial V_\phi}{\partial \phi}
+\end{equation*}
+
+\subsection{Curl}
+
+In rectangular coordinates:
+\begin{align*}
+    \bm{\nabla} \times \mathbf{V} & = \text{curl}~\mathbf{V}                                                                                                                                                                                                                                                                  \\
+                                  & = \begin{vmatrix}
+                                          \mathbf{i}                  & \mathbf{j}                  & \mathbf{k}                  \\
+                                          \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+                                          V_x                         & V_y                         & V_z
+                                      \end{vmatrix}                                                                                                                                                                                                 \\
+                                  & = \left( \frac{\partial V_z}{\partial y} - \frac{\partial V_y}{\partial z} \right) \mathbf{i} + \left( \frac{\partial V_x}{\partial z} - \frac{\partial V_z}{\partial x} \right) \mathbf{j} + \left( \frac{\partial V_y}{\partial x} - \frac{\partial V_x}{\partial y} \right) \mathbf{k}
+\end{align*}
+
+where $\mathbf{V}$ is a vector field. Note that $\bm{\nabla}\times\mathbf{V}$ is a vector field.
+
+\subsection{Laplacian}
+\begin{align*}
+    \nabla^2 f = \bm{\nabla}\cdot(\bm{\nabla}f) & = \text{div}~\text{grad}~f                                                                                  \\
+                                                & = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2}
+\end{align*}
+
+\begin{itemize}
+
     \item Vector properties
     \item Torque??
     \item Line integrals pg. 320, conservative vector fields pg. 322 and curl, gradient
