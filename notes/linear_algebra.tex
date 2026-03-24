@@ -242,14 +242,36 @@
           \begin{enumerate}
               \item Recall that a Hookian spring force is given by
                     \begin{equation*}
-                        F = -kx
+                        \mathbf{F} = -k\mathbf{x}
                     \end{equation*}
-                    where $k$ is the spring constant and $x$ is the displacement of the spring from its equilibrium position.
+                    where $k$ is the spring constant and $\mathbf{x}$ is the displacement of the spring from its equilibrium position.
               \item Recall that
                     \begin{equation*}
-                        F = -\nabla U
+                        \mathbf{F} = -\nabla U
                     \end{equation*}
-                    where $U$ is the potential energy of the system.
-              \item
+                    where $U$ is the potential energy of the system. In one dimension:
+                    \begin{equation*}
+                        F = -\frac{\partial U}{\partial x}\text{.}
+                    \end{equation*}
+              \item If $x_1$ and $x_2$ are the displacements of the first and second masses from their equilibrium positions, respectively, then the middle spring's compression/extension is given by $x_2 - x_1$.
+              \item Solve for $U$ in terms of $k_1$, $k_2$, $k_3$, $x_1$, and $x_2$.
+              \item Recall that
+                    \begin{equation*}
+                        -\frac{\partial U}{\partial x} = F = ma = m\ddot{x}\text{.}
+                    \end{equation*}
+              \item Since this involves haromic motion, assume the form
+                    \begin{equation*}
+                        x_n(t) = A_n e^{i\omega t}\text{,}
+                    \end{equation*}
+                    so
+                    \begin{equation*}
+                        \ddot{x}_n = -\omega^2 x_n\text{.}
+                    \end{equation*}
+              \item Designate
+                    \begin{equation*}
+                        \lambda_n = \frac{m\omega_n^2}{k}\text{,}
+                    \end{equation*}
+                    where, in fact, $\lambda$ is the eigenvalue of the linear system.
+              \item Solve for the eigenvalues and eigenvectors of the system. The eigenvalues give the \textbf{characteristic frequencies} (when solving for $\omega_n$) of the system, and the eigenvectors give the \textbf{characeristic modes of vibration} of the system. For this particular example, if both elements in an eigenvector are of the same sign, then the mode of vibration would be $\rightarrow \rightarrow$ and $\leftarrow \leftarrow$. If the elements are of opposite signs, then the mode of vibration at the corresponding frequency would be $\rightarrow \leftarrow$ and $\leftarrow \rightarrow$.
           \end{enumerate}
 \end{itemize}
