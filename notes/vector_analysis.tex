@@ -227,12 +227,37 @@ In spherical coordinates:
 \begin{itemize}
     \item A field is \textbf{irrotational} iff $\bm{\nabla} \times \mathbf{F} = \mathbf{0}$
     \item A field is \textbf{incompressible} (or \textbf{solenoidal}) iff $\bm{\nabla} \cdot \mathbf{F} = 0$
-    \item
+          \begin{itemize}
+              \item $\bm{\nabla} \cdot (\bm{\nabla} \times \mathbf{F}) = 0$
+          \end{itemize}
+    \item Linearity:
+          \begin{itemize}
+              \item $\bm{\nabla}(f + g) = \bm{\nabla}f + \bm{\nabla}g$ and $\bm{\nabla}(cf) = c\bm{\nabla}f$
+              \item $\bm{\nabla}\cdot(\mathbf{F} + \mathbf{G}) = \bm{\nabla}\cdot\mathbf{F} + \bm{\nabla}\cdot\mathbf{G}$ and $\bm{\nabla}\cdot(c\mathbf{F}) = c(\bm{\nabla}\cdot\mathbf{F})$
+              \item $\bm{\nabla}\times(\mathbf{F} + \mathbf{G}) = \bm{\nabla}\times\mathbf{F} + \bm{\nabla}\times\mathbf{G}$ and $\bm{\nabla}\times(c\mathbf{F}) = c(\bm{\nabla}\times\mathbf{F})$
+          \end{itemize}
+    \item Product rule:
+          \begin{itemize}
+              \item $\bm{\nabla}(fg) = f\bm{\nabla}g + g\bm{\nabla}f$
+              \item $\bm{\nabla} \cdot (f\mathbf{F}) = f(\bm{\nabla} \cdot \mathbf{F}) + \mathbf{F} \cdot (\bm{\nabla}f)$
+              \item $\bm{\nabla} \times (f\mathbf{F}) = f(\bm{\nabla} \times \mathbf{F}) + (\bm{\nabla}f) \times \mathbf{F}$
+          \end{itemize}
+    \item Gradient quotient rule:
+          \begin{equation*}
+              \bm{\nabla}\left(\frac{f}{g}\right) = \frac{g\bm{\nabla}f - f\bm{\nabla}g}{g^2}
+          \end{equation*}
+    \item $\bm{\nabla} \cdot (\mathbf{F} \times \mathbf{G}) = \mathbf{G} \cdot (\bm{\nabla} \times \mathbf{F}) - \mathbf{F} \cdot (\bm{\nabla} \times \mathbf{G})$
+    \item $\nabla^2(fg) = f~\nabla^2 g + g~\nabla^2 f + 2(\bm{\nabla}f \cdot \bm{\nabla}g)$
+    \item Using properties above: $\bm{\nabla} \cdot (\bm{\nabla} f \times \bm{\nabla} g) = 0$
+    \item $\bm{\nabla} \cdot (f \bm{\nabla} g - g \bm{\nabla} f) = f~\nabla^2 g - g~\nabla^2 f$
+    \item Using the triple vector product: $\bm{\nabla} \times (\bm{\nabla} \times \mathbf{F}) = \bm{\nabla}(\bm{\nabla} \cdot \mathbf{F}) - \nabla^2 \mathbf{F}$
+          \begin{itemize}
+              \item Note that this property also defines $\nabla^2 \mathbf{F}$.
+          \end{itemize}
 \end{itemize}
 
 \begin{itemize}
 
-    \item Vector properties
     \item Torque??
     \item Line integrals pg. 320, conservative vector fields pg. 322 and curl, gradient
     \item pg. 323 conservative -> potential
