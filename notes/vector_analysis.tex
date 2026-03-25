@@ -127,6 +127,33 @@ To remember this formula (beyond the mnemonic BAC-CAB), the right hand side is a
 
 $\mathbf{B} \times \mathbf{C}$ is perpendicular to the plane spanned by $\mathbf{B}$ and $\mathbf{C}$, but $\mathbf{A} \times (\mathbf{B} \times \mathbf{C})$ is back on that plane.
 
+\subsection{Polar Coordinates}
+
+In rectangular coordinates, the basis vectors $\mathbf{i}$ and $\mathbf{j}$ are constant for all points, but in polar coordinates, the basis vectors $\mathbf{e}_r$ and $\mathbf{e}_\theta$ are \emph{not} constant.
+
+\begin{align*}
+    \mathbf{e}_r                  & = \cos\theta~\mathbf{i} + \sin\theta~\mathbf{j}  \\
+    \mathbf{e}_\theta             & = -\sin\theta~\mathbf{i} + \cos\theta~\mathbf{j} \\
+    \frac{d\mathbf{e}_r}{dt}      & = \mathbf{e}_{\theta} \frac{d\theta}{dt}         \\
+    \frac{d\mathbf{e}_\theta}{dt} & = -\mathbf{e}_r \frac{d\theta}{dt}
+\end{align*}
+
+\vsp
+
+To find the derivative of a vector in polar coordinates, the chain rule must be remembered. In rectangular coordinates, the derivative of a basis vector is always zero, leading to the result being the simple derivative of the components, but this is \emph{not} the case in polar coordinates.
+
+\subsection{Spherical Coordinates}
+
+\begin{align*}
+    \mathbf{e}_\rho   & = \cos\theta \sin\phi~\mathbf{i} + \sin\theta \sin\phi~\mathbf{j} + \cos\phi~\mathbf{k} \\
+    \mathbf{e}_\theta & = -\sin\theta~\mathbf{i} + \cos\theta~\mathbf{j}                                        \\
+    \mathbf{e}_\phi   & = \cos\theta \cos\phi~\mathbf{i} + \sin\theta \cos\phi~\mathbf{j} - \sin\phi~\mathbf{k}
+\end{align*}
+
+\vsp
+
+Note that $\theta$ and $\phi$ can be swapped, but the convention is the class is to assign $\theta$ to the $xy$-plane and $\phi$ to the $z$-axis.
+
 \subsection{Gradient}
 
 The gradient represents the direction and magnitude of the greatest rate of increase of a scalar field. The vector opposite of the gradient is the direction of the greatest rate of decrease. The vectors perpendicular to the gradient represent no change in the scalar field.
@@ -152,7 +179,7 @@ In cylindrical coordinates:
 
 In spherical coordinates:
 \begin{equation*}
-    \bm{\nabla} f = \text{grad}~f = \frac{\partial f}{\partial r}\mathbf{e}_r + \frac{1}{r}\frac{\partial f}{\partial \theta}\mathbf{e}_\theta + \frac{1}{r\sin\theta}\frac{\partial f}{\partial \phi}\mathbf{e}_\phi
+    \bm{\nabla} f = \text{grad}~f = \frac{\partial f}{\partial \rho}\mathbf{e}_\rho + \frac{1}{\rho\sin\phi}\frac{\partial f}{\partial \theta}\mathbf{e}_\theta + \frac{1}{\rho}\frac{\partial f}{\partial \phi}\mathbf{e}_\phi
 \end{equation*}
 
 \subsection{Directional Derivative}
@@ -163,12 +190,16 @@ In spherical coordinates:
 
 where $\mathbf{u}$ is the unit vector in the direction of differentiation.
 
-Special cases:
+\vsp
+
+Special cases in rectangular coordinates:
 \begin{itemize}
-    \item $\mathbf{u} = \mathbf{i} \implies \frac{d\phi}{ds} = \frac{\partial \phi}{\partial x}$.
-    \item $\mathbf{u} = \mathbf{j} \implies \frac{d\phi}{ds} = \frac{\partial \phi}{\partial y}$.
-    \item $\mathbf{u} = \mathbf{k} \implies \frac{d\phi}{ds} = \frac{\partial \phi}{\partial z}$.
+    \item $\mathbf{u} = \mathbf{i} \implies \frac{d\phi}{ds} = \frac{\partial \phi}{\partial x}$
+    \item $\mathbf{u} = \mathbf{j} \implies \frac{d\phi}{ds} = \frac{\partial \phi}{\partial y}$
+    \item $\mathbf{u} = \mathbf{k} \implies \frac{d\phi}{ds} = \frac{\partial \phi}{\partial z}$
 \end{itemize}
+
+These are simply the coefficients in front of the basis vectors from the definition of the gradient. The special cases for cylindrical and spherical coordinates can be found similarly.
 
 \subsection{Divergence}
 
