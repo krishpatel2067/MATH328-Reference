@@ -18,14 +18,20 @@ Also known as the scalar product, the dot product takes two vectors and returns 
 \end{align*}
 
 Properties:
+
 \begin{itemize}
     \item Commutative: $\mathbf{A}\cdot\mathbf{B} = \mathbf{B}\cdot\mathbf{A}$
     \item Distributive: $\mathbf{A}\cdot(\mathbf{B}+\mathbf{C}) = \mathbf{A}\cdot\mathbf{B} + \mathbf{A}\cdot\mathbf{C}$
     \item $\mathbf{A}\cdot\mathbf{A} = |\mathbf{A}|^2$
     \item $\mathbf{A}\cdot\mathbf{B} = 0 \iff \mathbf{A} \perp \mathbf{B}$
+    \item \emph{Not} associative
 \end{itemize}
 
-Note that the dot product is \emph{not} associative.
+A useful identity involving the dot product is
+
+\begin{equation*}
+    \mathbf{A} \cdot d\mathbf{A} = |\mathbf{A}| d|\mathbf{A}|
+\end{equation*}
 
 \subsection{Projections}
 The scalar projection of $\mathbf{A}$ onto $\mathbf{B}$ is given by
@@ -255,6 +261,11 @@ In spherical coordinates:
     \nabla^2 f = \frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial f}{\partial r}\right) + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial \theta}\left(\sin\theta\frac{\partial f}{\partial \theta}\right) + \frac{1}{r^2\sin^2\theta}\frac{\partial^2 f}{\partial \phi^2}
 \end{equation*}
 
+If $f$ is only a function of $r$, then the spherical Laplacian simplifies to
+\begin{equation*}
+    \nabla^2 f = \frac{d^2f}{dr^2} + \frac{2}{r}\frac{df}{dr} = \frac{1}{r} \frac{d^2}{dr^2} (rf) \text{.}
+\end{equation*}
+
 \subsection{Vector Operator Properties}
 
 \begin{itemize}
@@ -349,25 +360,55 @@ Note that the direction of integration matters for vector fields, unlike scalar 
 
 where $\mathbf{dn} = \mathbf{N}~ds$ pertains to a region enclosed by $C$.
 
-\subsection{Conservative Vector Fields}
+\subsection{Conservative Vector Fields, Scalar Potentials, and Exact Differentials}
+
+A field $\mathbf{V}$ is \textbf{conservative} iff $\bm{\nabla} \times V = \mathbf{0}$. Such a field is also called a \textbf{gradient field}. If $\mathbf{V}$ is a gradient field, then there exists a \textbf{scalar potential} $\phi$ such that $\mathbf{V} = \bm{\nabla}\phi$. (In physics, $\mathbf{V} = -\bm{\nabla}\phi$ is used instead.)
 
 \begin{align*}
-    \oint_C \bm{\nabla}f\cdot d\mathbf{r} & = 0                                   \\
-    \int_C \bm{\nabla}f\cdot d\mathbf{r}  & = f(\mathbf{r}(b)) - f(\mathbf{r}(a))
+    \oint_C \bm{\nabla}\phi \cdot d\mathbf{r} & = 0                                         \\
+    \int_C \bm{\nabla}\phi \cdot d\mathbf{r}  & = \phi(\mathbf{r}(b)) - \phi(\mathbf{r}(a))
 \end{align*}
 
-$\bm{\nabla}f$ is called a gradient field and is \textbf{conservative}, which means that the path taken does not matter. Note the difference between the two integrals. The first is a closed curve, while the second is an open curve. A physical example is potential difference: it is zero around a closed curve, and it is simply a difference between the values at the two endpoints for an open curve.
+Note the difference between the two integrals. The first is a closed curve, while the second is an open curve. A physical example is potential difference: it is zero around a closed curve, and it is simply the difference between the values at the two endpoints for an open curve.
 
-\begin{itemize}
-    \item Torque??
-    \item Line integrals pg. 320, conservative vector fields pg. 322 and curl, gradient
-    \item pg. 323 conservative -> potential
-    \item pg. 325 vecAdvecA = AdA
-    \item pg. 326 exact diff (and mixed partial equal) when conservative
-    \item pg. 330 Green's Theorem
-    \item pg. 332 tanget and outward normal vec
-    \item pg. 332 9.13 9.14 divergence theorem
-    \item pg. 333 9.18 9.19 Stokes' Theorem
-\end{itemize}
+If $\mathbf{F} = \bm{\nabla} W$ (i.e., $\mathbf{F}$ is conservative), then $dW = dW_x~dx + dW_y~dy + dW_z~dz$ is an exact differential, which means that
 
-% spherical Laplacian for a function of only r
+\begin{equation*}
+    \frac{\partial dW_x}{\partial y} = \frac{\partial dW_y}{\partial x}
+\end{equation*}
+
+for all pairs of variables. The idea of conservative fields and exact differentials are equivalent to one another.
+
+\subsection{Green's Theorem}
+
+\begin{equation*}
+    \iint_A \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)~dA = \oint_{\partial A} P~dx + Q~dy
+\end{equation*}
+
+The line integral is counterclockwise around the boundary of $A$, which is denoted by $\partial A$. Green's theorem is convenient because it allows one to choose the easier of the two integrals to evaluate.
+
+\subsection{Tangent and Outward Normal Vectors}
+
+\begin{align*}
+    d\mathbf{r}   & = dx~\mathbf{i} + dy~\mathbf{j} \tag{tangent}        \\
+    \mathbf{n}~ds & = dy~\mathbf{i} - dx~\mathbf{j} \tag{outward normal}
+\end{align*}
+
+where $\mathbf{n}$ is a unit vector and $ds = \sqrt{dx^2 + dy^2}$.
+
+\subsection{Divergence Theorem}
+
+\begin{align*}
+    \iint_A \bm{\nabla} \cdot \mathbf{V}~dx~dy = \int_{\partial A} \mathbf{V} \cdot \mathbf{n}~ds \tag{2-dimensional}               \\
+    \iiint_\tau \bm{\nabla} \cdot \mathbf{V} d\tau  = \iint_{\partial \tau} \mathbf{V} \cdot \mathbf{n}~d\sigma \tag{3-dimensional} \\
+\end{align*}
+
+where $\tau$ represents volume and $d\sigma$ represents an element of surface area.
+
+\subsection{Stokes' Theorem}
+
+\begin{equation*}
+    \iint_\sigma (\bm{\nabla} \times \mathbf{V}) \cdot \mathbf{n}~d\sigma = \int_{\partial \sigma} \mathbf{V} \cdot d\mathbf{r}
+\end{equation*}
+
+where $\sigma$ is an open surface and $\partial \sigma$ is its boundary curve. Stokes' theorem is the 3D generalization of Green's theorem.
