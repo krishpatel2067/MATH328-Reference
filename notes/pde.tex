@@ -8,7 +8,7 @@ Partial differential equations (PDEs) involve partial derivatives of a function 
     \nabla^2 u                               & = 0 \tag {Laplace's equation}                                            \\
     \nabla^2 u                               & = f(x, y, z) \tag {Poisson's equation}                                   \\
     \nabla^2 u                               & = \frac{1}{\alpha^2}\frac{\partial u}{\partial t}  \tag {Heat equation}  \\
-    \nabla^2 u                               & = \frac{1}{v^2}\frac{\partial^2 u}{\partial t^2} \tag {Wave equation}    \\
+    \nabla^2 u                               & = \frac{1}{c^2}\frac{\partial^2 u}{\partial t^2} \tag {Wave equation}    \\
     -\frac{\hbar^2}{2m}\nabla^2 \Psi + V\Psi & = i\hbar\frac{\partial}{\partial t} \Psi \tag {Schr\"odinger's equation}
 \end{align*}
 
@@ -69,7 +69,17 @@ If the rod were instead a ring from $-L$ to $L$, there would be periodic boundar
 
 The solution for the function of $t$ often involves exponential decay (e.g., $e^{-\alpha^2 \lambda_n t}$), which makes sense since heat dissipates over time.
 
-\subsubsection{Wave on Infinitely Thin String}
+\subsubsection{Wave on an Infinitely Thin String}
+
+Common wave notation:
+
+\begin{align*}
+    \nu     & = \text{frequency}~(\text{sec}^{-1})                                                              \\
+    \lambda & = \text{wavelength}~(\text{m})                                                                    \\
+    c       & = \nu \lambda = \text{wave speed}~(\text{m/sec})                                                  \\
+    \omega  & = 2\pi\nu = \text{angular frequency}~(\text{rad/sec})                                             \\
+    k       & = \frac{2\pi}{\lambda} = \frac{2\pi\nu}{c} = \frac{\omega}{c} = \text{wave number}~(\text{rad/m})
+\end{align*}
 
 Given an infinitely thin string of length $L$, the wave equation is given by
 
@@ -121,6 +131,22 @@ A common initial condition is a plucked string, where the string is pulled up at
 \end{align*}
 
 where $f(x)$ is a triangular function.
+
+\vsp
+
+For a wave fixed at both ends, the lowest frequency at which a standing wave can occur is called the \textbf{fundamental frequency} (or \textbf{first harmonic}), given by
+
+\begin{equation*}
+    \nu_1 = \frac{c}{2L}\text{,}
+\end{equation*}
+
+and each subsequent frequency is an integer multiple of the fundamental frequency:
+
+\begin{equation*}
+    \nu_n = n\nu_1 = \frac{nc}{2L}\text{, for } n = 1, 2, 3, \dots
+\end{equation*}
+
+The second harmonic (or \textbf{first overtone}) is $\nu_2$; the third harmonic (or second overtone) is $\nu_3$, and so on.
 
 \subsubsection{Schr\"odinger's Equation}
 
@@ -262,9 +288,3 @@ The $-\lambda$ is called the \textbf{separation constant}, and it is usually cho
         $r^2 x'' + r x' - \lambda x = 0$ & $x = c_1r^{\sqrt{\lambda}} + c_2r^{-\sqrt{\lambda}}$
     \end{tabular}
 \end{table}
-
-% pg. 641 - PDE method, ODE const coeff review, Fourier sine
-% pg. 648 - heat flow equation
-% pg. 650 - non-homogenous conditions
-% pg. 653 -wave equation
-% pg. 656 - fund freqs

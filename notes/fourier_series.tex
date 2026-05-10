@@ -19,6 +19,15 @@ Note that the $a_n$ formula applies for $a_0$ too with $\cos(0) = 1$. The consta
 
 \vsp
 
+The Fourier series shows that a $f(x)$ can be represented as a sum of even (cosine) and odd (sine) functions. Thus, the following is true:
+
+\begin{itemize}
+    \item $f(x)$ is even $\implies$ $b_n = 0$
+    \item $f(x)$ is odd $\implies$ $a_n = 0$
+\end{itemize}
+
+\vsp
+
 The constants $a_0/2$, $a_n$, and $b_n$ are the components of $f(x)$ in the directions of the basis functions
 
 \begin{equation*}
@@ -59,8 +68,35 @@ where $|z|^2$ for a complex value or function $z$ is $z z^*$, so
     |c_n|^2 = c_n c_n^* = \frac{a_n - ib_n}{2} \frac{a_n + ib_n}{2} = \frac{a_n^2 + b_n^2}{4}\text{.}
 \end{equation}
 
-\subsection{Dirichlet Conditions}
+\subsection{Theorem of Dirichlet}
 
-% pg. 376 thm of Dirichlet (conv not necessarily true)
-% pg. 378 (complex form of Fourier series)
-% c_n = c_{-n}^* iff f is real-valued
+If
+
+\begin{itemize}
+    \item $f(x)$ is periodic with period $2L$,
+    \item $f(x)$ is single-valued on $[-L,L]$,
+    \item $f(x)$ has a finite number of maximum and minimum values on $[-L,L]$,
+    \item $f(x)$ has a finite number of discontinuities on $[-L,L]$, and
+    \item $\int_{-L}^L |f(x)|~dx < \infty$,
+\end{itemize}
+
+then the Fourier series of $f(x)$ converges to $\frac{f(x^+) + f(x^-)}{2}$ for all $x$. That is, at points where $f(x)$ is continuous, the Fourier series simply converges to that value, and at jumps, the series converges to the midpoint of the jump (including at $x = \pm L$).
+
+\hln
+\vsp
+
+Some functions that do not satisfy the Dirichlet conditions include:
+
+\begin{itemize}
+    \item Not single-valued: $x^2 + y^2 = L^2$
+    \item Infinite maxima and minima: $f(x) = \sin(1/x)$
+    \item Infinite discontinuities: \begin{equation*}
+              f(x) = \begin{cases}
+                  1  & \text{for } x > 0 \text{ in } \sin(1/x) \\
+                  -1 & \text{for } x < 0 \text{ in } \sin(1/x) \\
+              \end{cases}
+          \end{equation*}
+    \item Not absolutely integrable: $f(x) = 1/x$
+\end{itemize}
+
+Note that the converse of the theorem of Dirichlet is \emph{not} true. That is, a function that does not satisfy the Dirichlet conditions may still have a convergent Fourier series. In fact, $f(x) = \sin(1/x)$ is such a function.

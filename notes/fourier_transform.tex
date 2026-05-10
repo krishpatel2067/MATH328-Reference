@@ -152,3 +152,29 @@ Use the principle of superposition to combine the displacement and velocity solu
 \end{equation*}
 
 This is known as \textbf{d'Alembert's solution}.
+
+\subsection{Convolution Theorem}
+
+The convolution theorem states that multiplication in the spatial domain is equivalent to convolution in the frequency domain:
+
+\begin{equation*}
+    \mathcal{F}\left[f(x)g(x)\right] = F(\alpha) \ast G(\alpha)
+\end{equation*}
+
+where the convolution is defined as
+
+\begin{equation*}
+    f(x) \ast g(x) \equiv \int_{-\infty}^\infty f(\tau)g(x-\tau)~d\tau\text{.}
+\end{equation*}
+
+Note: this is assuming the definition of the Fourier transform presented in this reference. Since the placement of the constant $1/2\pi$ in the definition can vary, other versions may introduce an additional factor in the convolution theorem.
+
+\vsp
+
+The convolution thorem also goes the other way around: multiplication in the frequency domain is equivalent to convolution in the spatial domain:
+
+\begin{equation*}
+    \mathcal{F}\left[f(x) \ast g(x)\right] = 2\pi F(\alpha) G(\alpha)
+\end{equation*}
+
+Notice that the $2\pi$ factor appears in this second equation due to the definition of the Fourier transform used in this reference.
