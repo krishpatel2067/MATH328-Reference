@@ -15,11 +15,49 @@ where
     b_n & = \frac{1}{L}\int_{-L}^L f(x)\sin\left(\frac{n\pi x}{L}\right)~dx\text{.}
 \end{align*}
 
-Note that the $a_n$ formula applies for $a_0$ too with $\cos(0) = 1$.
+Note that the $a_n$ formula applies for $a_0$ too with $\cos(0) = 1$. The constant $a_0/2$ is also the average value of $f(x)$.
 
 \vsp
 
+The constants $a_0/2$, $a_n$, and $b_n$ are the components of $f(x)$ in the directions of the basis functions
+
+\begin{equation*}
+    \left\{ 1, \cos\left(\frac{\pi x}{L}\right), \sin\left(\frac{\pi x}{L}\right), \cos\left(\frac{2\pi x}{L}\right), \sin\left(\frac{2\pi x}{L}\right), \dots \right\}\text{.}
+\end{equation*}
+
 The convergence of the Fourier series relies heavily on the coefficients $a_n$ and $b_n$ since the trigonometric functions simply oscillate between $-1$ and $1$.
+
+\subsection{Complex Form}
+
+The Fourier series can be equivalently written in complex form as
+
+\begin{equation*}
+    f(x) = \sum_{n=-\infty}^\infty c_n e^{i\frac{n\pi x}{L}}
+\end{equation*}
+
+where
+
+\begin{equation*}
+    c_n = \frac{1}{2L}\int_{-L}^L f(x)e^{-i\frac{n\pi x}{L}}~dx\text{.}
+\end{equation*}
+
+The $i$ and $-i$ in $f(x)$ and $c_n$ can be swapped without changing the result.
+
+\vsp
+
+Note that $c_n = c_{-n}^*$ iff $f(x)$ is real-valued. Similar to the non-complex form, each $c_n$ is the component of $f(x)$ in the direction of the basis function $e^{i\frac{n\pi x}{L}}$.
+
+\subsection{Parseval's Relation}
+
+\begin{equation*}
+    \frac{1}{2L}\int_{-L}^L |f(x)|^2~dx = \frac{a_0^2}{4} + \frac{1}{2}\sum_{n=1}^\infty (a_n^2 + b_n^2) = \sum_{n=-\infty}^\infty |c_n|^2
+\end{equation*}
+
+where $|z|^2$ for a complex value or function $z$ is $z z^*$, so
+
+\begin{equation}
+    |c_n|^2 = c_n c_n^* = \frac{a_n - ib_n}{2} \frac{a_n + ib_n}{2} = \frac{a_n^2 + b_n^2}{4}\text{.}
+\end{equation}
 
 \subsection{Dirichlet Conditions}
 

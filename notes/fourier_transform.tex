@@ -1,0 +1,154 @@
+\section{Fourier Transform}
+
+\subsection{Definition}
+
+\begin{align*}
+    \mathcal{F}\left\{f(x)\right\}           & = F(\alpha) = \frac{1}{2\pi} \int_{-\infty}^\infty f(x)e^{-i\alpha x}~dx \\
+    \mathcal{F}^{-1}\left\{F(\alpha)\right\} & = f(x) = \int_{-\infty}^\infty F(\alpha)e^{i\alpha x}~d\alpha
+\end{align*}
+
+where $f(x) \to 0$ as $x \to \pm\infty$.
+
+\vsp
+
+Other definitions exist, such as that obtained by swapping the $1/(2\pi)$ factor between the two equations or using $1/\sqrt{2\pi}$ for both.
+
+\vsp
+
+The Fourier transform essentially takes the limit $L \to \infty$ on the Fourier series, lifting the constraint of a $2L$-periodic function. That is, the Fourier transform is a generalization of the Fourier series and can be used on non-periodic functions as well. This is useful for problems such as the wave equation with an infinitely long string. Furthermore, the Fourier transform is inherently continuous due to $\alpha$ whereas the Fourier series is discrete due to $n$.
+
+\subsection{Properties}
+
+\subsubsection{Differentiation}
+
+The Fourier transform turns differentiation into multiplication:
+
+\begin{align*}
+    \mathcal{F}\left\{f'(x)\right\}      & = i\alpha F(\alpha) \tag{1st derivative}     \\
+    \mathcal{F}\left\{f^{(n)}(x)\right\} & = (i\alpha)^n F(\alpha) \tag{nth derivative} \\
+\end{align*}
+
+\subsubsection{Integration}
+
+The Fourier transform turns integration into division:
+
+\begin{equation*}
+    \mathcal{F}\left\{\int_{-\infty}^x f(s)~ds\right\} = \frac{F(\alpha)}{i\alpha} + \pi F(0)\delta(\alpha)
+\end{equation*}
+
+The $\pi F(0)\delta(\alpha)$ term represents a constant spike at $\alpha = 0$.
+
+\subsection{Solving the Wave Equation for an Infinite String}
+
+The Fourier transform can be used to solve the wave equation for an infinite string, which is given by
+
+\begin{equation*}
+    u_{tt} - c^2 u_{xx} = 0\text{, for } -\infty < x < \infty\text{, } t > 0
+\end{equation*}
+
+with initial conditions
+
+\begin{equation*}
+    u(x,0) = f(x)\text{, } u_t(x,0) = g(x)
+\end{equation*}
+
+where $u(x,t)$ is the displacement of the string at position $x$ and time $t$, and $c$ is the wave speed.
+
+\vsp
+
+Represent the solution $u(x,t)$ as an inverse Fourier transform:
+
+\begin{equation*}
+    u(x,t) = \int_{-\infty}^\infty U(\alpha,t)e^{i\alpha x}~d\alpha
+\end{equation*}
+
+Differentiate with respect to $t$ and $x$:
+
+\begin{align*}
+    u_{tt} & = \int_{-\infty}^\infty U''(\alpha,t)e^{i\alpha x}~d\alpha         \\
+    u_{xx} & = -\int_{-\infty}^\infty \alpha^2 U(\alpha,t)e^{i\alpha x}~d\alpha
+\end{align*}
+
+Note that $U(\alpha, t)$ is strictly in terms of a single independent variable $t$ because $\alpha$ is just a dummy variable.
+
+\vsp
+
+Substitute these into the wave equation to yield a second-order ODE in terms of $t$:
+
+\begin{align*}
+    \int_{-\infty}^\infty \underbrace{\left[U''(\alpha,t) + \alpha^2 c^2 U(\alpha,t) \right]}_{=0} e^{i\alpha x}~d\alpha = 0 \\
+    U''(\alpha,t) + \alpha^2 c^2 U(\alpha,t) = 0
+\end{align*}
+
+The initial conditions are equivalently
+
+\begin{align*}
+    U(\alpha,0)  & = F(\alpha) \\
+    U'(\alpha,0) & = G(\alpha)
+\end{align*}
+
+\vsp
+
+Thus, the general solution for $U(\alpha,t)$ is
+
+\begin{align*}
+    U(\alpha,t) = c_1(\alpha)\cos(c\alpha t) + c_2(\alpha)\sin(c\alpha t) \\
+    U(\alpha,t) = A(\alpha)\cos(c\alpha t) + B(\alpha)\frac{\sin(c\alpha t)}{c\alpha}
+\end{align*}
+
+\vsp
+
+where $A(\alpha) = c_1(\alpha)$ and $B(\alpha) = c\alpha~c_2(\alpha)$ are arbitrary functions of $\alpha$ that are determined by the initial conditions.
+
+\vsp
+
+Applying the initial conditions:
+
+\begin{align*}
+    U(\alpha,0) = F(\alpha) = A(\alpha) \\
+    U'(\alpha,0) = G(\alpha) = B(\alpha)
+\end{align*}
+
+\vsp
+
+Thus, the solution for $U(\alpha,t)$ is
+
+\begin{equation*}
+    U(\alpha,t) = F(\alpha)\cos(c\alpha t) + G(\alpha)\frac{\sin(c\alpha t)}{c\alpha}
+\end{equation*}
+
+\vsp
+
+Set $g(x) = 0$ (thus $G(\alpha) = 0$) to find the solution for an initial displacement $f(x)$ with zero initial velocity:
+
+\begin{align*}
+    u(x,t) & = \frac{1}{2}\int_{-\infty}^\infty F(\alpha) e^{i\alpha(x+ct)} + F(\alpha) e^{i\alpha(x-ct)}~d\alpha \\
+           & = \frac{1}{2} f(x + ct) + \frac{1}{2} f(x - ct)
+\end{align*}
+
+where Euler's formula yields
+
+\begin{equation*}
+    \cos(\alpha ct)e^{i\alpha x} = \frac{e^{i\alpha ct} + e^{-i\alpha ct}}{2}e^{i\alpha x}\text{.}
+\end{equation*}
+
+Now, set $f(x) = 0$ (thus $F(\alpha) = 0$) to find the solution for zero initial displacement with an initial velocity $g(x)$:
+
+\begin{align*}
+    u(x,t) & = \int_{-\infty}^\infty G(\alpha) \frac{\sin(\alpha ct)}{c\alpha} e^{i\alpha x}~d\alpha                                                \\
+           & = \frac{1}{2c}\int_{-\infty}^\infty \frac{G(\alpha)}{i\alpha} e^{i\alpha(x+ct)} - \frac{G(\alpha)}{i\alpha} e^{i\alpha(x-ct)} ~d\alpha \\
+           & = \frac{1}{2c} \int_{-\infty}^{x + ct}g(s)~ds - \frac{1}{2c} \int_{-\infty}^{x - ct}g(s)~ds                                            \\
+           & = \frac{1}{2c} \int_{x - ct}^{x + ct}g(s)~ds
+\end{align*}
+
+where the Fourier transform's integration-division property yields the integrals in the spatial domain.
+
+\vsp
+
+Use the principle of superposition to combine the displacement and velocity solutions to find the general solution:
+
+\begin{equation*}
+    u(x,t) = \frac{1}{2}\left[f(x + ct) + f(x - ct)\right] + \frac{1}{2c} \int_{x - ct}^{x + ct}g(s)~ds
+\end{equation*}
+
+This is known as \textbf{d'Alembert's solution}.
