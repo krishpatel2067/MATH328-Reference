@@ -1,4 +1,130 @@
-% pg. 639 - examples of PDEs
+\section{Partial Differential Equations}
+
+\subsection{Examples}
+
+\begin{align*}
+    \nabla^2 u                               & = 0 \tag {Laplace's equation}                                           \\
+    \nabla^2 u                               & = f(x, y, z) \tag {Poisson's equation}                                  \\
+    \nabla^2 u                               & = \frac{1}{\alpha^2}\frac{\partial u}{\partial t}  \tag {Heat equation} \\
+    \nabla^2 u                               & = \frac{1}{v^2}\frac{\partial^2 u}{\partial t^2} \tag {Wave equation}   \\
+    -\frac{\hbar^2}{2m}\nabla^2 \Psi + V\Psi & = i\hbar\frac{\partial}{\partial t} \Psi \tag {Schrodinger's equation}
+\end{align*}
+
+\subsection{Common Problems}
+
+\subsubsection{Heat Flow in a Semi-Infinite Channel}
+
+Given a channel of width $L$ and infinite height, with the bottom held at temperature $T_0$, the steady-state temperature distribution is given by
+
+\begin{equation*}
+    \nabla^2 T = 0\text{, for } 0 < x < L \text{ and } y > 0
+\end{equation*}
+
+Possible boundary conditions:
+
+\begin{align*}
+    T(x, 0) & = T_0         \tag{1}                           \\
+    T(0, y) & = 0 \text{ or } T_x(0, y) = 0           \tag{2} \\
+    T(L, y) & = 0 \text{ or } T_x(L, y) = 0           \tag{3} \\
+    T(x, y) & \to 0 \text{ as } y \to \infty
+\end{align*}
+
+The $T_x$ and $T_y$ boundary conditions imply insulation or zero flux at the boundaries. Usually, boundary conditions (2) and (3) are applied to the individual solutions to find the eigenvalues and eigenfunctions, and boundary condition (1) is applied to the general solution to find the series coefficients.
+
+\subsubsection{Heat Flow Infinitely Thin Rod}
+
+Given an infinitely thin rod from $x = 0$ to $x = L$, the heat flow is given by
+
+\begin{equation*}
+    \frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2}\text{.}
+\end{equation*}
+
+Possible boundary conditions:
+
+\begin{align*}
+    u(0, t) & = 0 \text{ or } u_x(0, t) = 0 \\
+    u(L, t) & = 0 \text{ or } u_x(L, t) = 0
+\end{align*}
+
+Possible initial conditions:
+
+\begin{align*}
+    u(x, 0) & = f(x)
+\end{align*}
+
+If the rod were instead a ring from $-L$ to $L$, there would be periodic bounary conditions:
+
+\begin{align*}
+    u(-L, t)   & = u(L, t)   \\
+    u_x(-L, t) & = u_x(L, t)
+\end{align*}
+
+\subsection{General Strategy}
+
+\begin{enumerate}
+    \item Assume a separable form, e.g. $u = X(x)Y(y)$.
+    \item Differentiate $u$ as needed and substitute into the original PDE.
+    \item Divide by $XY$ and set equal to a constant, e.g. $-\lambda$.
+    \item Solve the resulting ODEs.
+    \item Apply the boundary conditions to find the \textbf{eigenvalues} and their corresponding \textbf{eigenfunctions} $X_n(x)$ or $Y_n(y)$.
+          \begin{enumerate}
+              \item Enforce a non-trivial solution to get discrete eigenvalues, e.g.
+
+                    \begin{equation*}
+                        \sin(\sqrt{\lambda}L) = 0 \implies \sqrt{\lambda}L = n\pi \implies \lambda = \left(\frac{n\pi}{L}\right)^2
+                    \end{equation*}
+
+              \item Make sure to test if $\lambda = 0$ is an eigenvalue.
+          \end{enumerate}
+    \item Construct the general solution as a linear combination of the product of the individual solutions, forming an infinite series:
+
+          \begin{equation*}
+              u(x, y) = \sum_{n=1}^{\infty} c_n X_n(x)Y_n(y)
+          \end{equation*}
+
+    \item Apply the initial conditions or the rest of the boundary conditions (which cannot satisfy the individual solutions) to the general solution to find the series coefficients $c_n$, e.g.
+
+          \begin{equation*}
+              c_n = \frac{2}{L} \int_0^L f(x)\sin(\frac{n\pi x}{L})~dx
+          \end{equation*}
+
+          if the eigenfunction is sine. In general, the equation for $c_n$ is the inner product of the eigenfunction and the initial condition, normalized by the norm of the eigenfunction (e.g. the $2/L$ in the example above).
+
+\end{enumerate}
+
+\subsection{Separation of Variables}
+
+Take example of $\nabla^2 u = 0$. The first step of solving a partial differential equation (PDE) is to assume that it is \textbf{separable}:
+
+\begin{equation*}
+    u = X(x)Y(y)
+\end{equation*}
+
+Differentiate $u$ as needed and substitute into the original PDE:
+
+\begin{equation*}
+    X''Y + XY'' = 0
+\end{equation*}
+
+If the PDE is separable, dividing by $XY$ will separate the variables:
+
+\begin{equation*}
+    \frac{X''}{X} = -\frac{Y''}{Y} = -\lambda
+\end{equation*}
+
+The $-\lambda$ is called the \textbf{separation constant}, and it is usually chosen to be negative to fit the boundary conditions.
+
+\subsection{ODE with Constant Coefficients}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l}
+        $x'' = 0$             & $x = c_1 + c_2x$                                          \\
+        $x'' + \lambda x = 0$ & $x = c_1\cos(\sqrt{\lambda}x) + c_2\sin(\sqrt{\lambda}x)$ \\
+        $x'' - \lambda x = 0$ & $x = c_1e^{\sqrt{\lambda}x} + c_2e^{-\sqrt{\lambda}x}$    \\
+    \end{tabular}
+\end{table}
+
 % pg. 641 - PDE method, ODE const coeff review, Fourier sine
 % pg. 648 - heat flow equation
 % pg. 650 - non-homogenous conditions

@@ -1,0 +1,108 @@
+\section{Miscellaneous}
+
+\subsection{Dirac Delta Function}
+
+\subsubsection{Definition}
+
+Given a rectangular pulse
+
+\begin{equation*}
+    d_\epsilon(x) = \begin{cases}
+        \frac{1}{2\epsilon} & |x| \le \epsilon \\
+        0                   & |x| > \epsilon
+    \end{cases}\text{,}
+\end{equation*}
+
+the Dirac delta function is defined as
+
+\begin{equation*}
+    \delta(x) = \lim_{\epsilon \to 0} d_\epsilon(x)\text{.}
+\end{equation*}
+
+It is 0 everywhere in the domain except at $x = 0$ where it is infinitely tall. Alternatively, the Dirac delta function can be defined as
+
+\begin{equation*}
+    \delta(x) = \lim_{k \to \infty} d_k(x) = \lim_{k \to \infty} \frac{1}{\pi} \frac{k}{1 + x^2 k^2}
+\end{equation*}
+
+where $d_k(x)$ is the Lorentzian function (or Cauchy distribution) whose area under the curve is always 1 regardless of $k$.
+
+\subsubsection{Properties}
+
+By default, the impulse is at the origin, but it can be shifted:
+
+\begin{align*}
+    \delta(x - x_0) \tag{1-dimensional} \\
+    \delta(\mathbf{r} - \mathbf{r}_0) = \delta(x - x_0)\delta(y - y_0)\delta(z - z_0) \tag{3-dimensional}
+\end{align*}
+
+Normalization of the Dirac delta function:
+
+\begin{align*}
+    \int_{-\infty}^\infty \delta(x)~dx                                                      & = 1 \tag{1-dimensional} \\
+    \int_{-\infty}^\infty \int_{-\infty}^\infty \int_{-\infty}^\infty \delta(\mathbf{r})~dV & = 1 \tag{3-dimensional}
+\end{align*}
+
+\vsp
+
+A notable property of the Dirac delta function is the \textbf{sifting property}:
+
+\begin{align*}
+    \int_{-\infty}^\infty f(x)\delta(x-a)~dx                                                                          & = f(a) \tag{1-dimensional}            \\
+    \int_{-\infty}^\infty \int_{-\infty}^\infty \int_{-\infty}^\infty f(\mathbf{r})\delta(\mathbf{r}-\mathbf{r}_0)~dV & = f(\mathbf{r}_0) \tag{3-dimensional}
+\end{align*}
+
+\subsubsection{Derivatives}
+
+The first derivative of the Dirac delta function is
+
+\begin{equation*}
+    \delta'(x) = - \lim_{k \to \infty} \frac{d}{dx} d_k(x)\text{.}
+\end{equation*}
+
+The normalization is given by
+
+\begin{equation*}
+    \int_{-\infty}^\infty \delta'(x)~dx = 0\text{.}
+\end{equation*}
+
+The sifting property of the first derivative is given by
+
+\begin{equation*}
+    \int_{-\infty}^\infty f(x)\delta'(x-a)~dx = -f'(a)\text{,}
+\end{equation*}
+
+which can generalized to
+
+\begin{equation*}
+    \int_{-\infty}^\infty f(x)\delta^{(n)}(x-a)~dx = (-1)^n f^{(n)}(a)\text{.}
+\end{equation*}
+
+\subsection{Inner Product of Functions}
+
+The inner product of two functions $f(x)$ and $g(x)$ over the interval $[0, L]$ is given by
+
+\begin{equation*}
+    \langle f, g \rangle = \int_0^L f(x)g(x)~dx\text{.}
+\end{equation*}
+
+If the functions are \textbf{orthogonal}, then their inner product is 0.
+
+The norm of a function is given by
+
+\begin{equation*}
+    \|f\| = \sqrt{\langle f, f \rangle} = \sqrt{\int_0^L f(x)^2~dx}
+\end{equation*}
+
+A function can be normalized by dividing it by its norm:
+
+\begin{equation*}
+    \hat{f}(x) = \frac{f(x)}{\|f\|} \implies \|\hat{f}\| = 1
+\end{equation*}
+
+A special case is with trigonometric functions:
+
+\begin{align*}
+    \int_0^L \sin(\frac{n\pi x}{L})\sin(\frac{m\pi x}{L})~dx & = \begin{cases} \frac{L}{2} & n = m \\ 0 & n \neq m  \end{cases} \\
+    \int_0^L \cos(\frac{n\pi x}{L})\cos(\frac{m\pi x}{L})~dx & = \begin{cases} \frac{L}{2} & n = m \\ 0 & n \neq m \end{cases}
+\end{align*}

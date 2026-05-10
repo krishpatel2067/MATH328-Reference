@@ -345,7 +345,7 @@ where $ds = |\mathbf{r}'(t)|~dt$ and the direction of integration does not matte
 For a vector field $\mathbf{F} = P\mathbf{i} + Q\mathbf{j}$ in 2D:
 
 \begin{equation*}
-    \int_C \mathbf{F}\cdot d\mathbf{r} = \int_C \mathbf{F}\cdot \mathbf{T}~ds = \int_C P~dx + Q~dy = -\int_{-C} \mathbf{F}\cdot d\mathbf{r}
+    \int_C \mathbf{F}\cdot d\mathbf{r} = \int_a^b f(\mathbf{r}(t)) \cdot \mathbf{r}'(t)~dt = \int_C \mathbf{F}\cdot \mathbf{T}~ds = \int_C P~dx + Q~dy = -\int_{-C} \mathbf{F}\cdot d\mathbf{r}
 \end{equation*}
 
 \vsp
@@ -355,7 +355,7 @@ Note that the direction of integration matters for vector fields, unlike scalar 
 \subsection{Flux}
 
 \begin{equation*}
-    \oint_C \mathbf{F}\cdot d\mathbf{n} = \oint_C \mathbf{F}(\mathbf{r}(t))\cdot (dy\mathbf{i} - dx\mathbf{j}) = \oint_C P~dy - Q~dx
+    \oint_C \mathbf{F}\cdot d\mathbf{n} = \oint_C \mathbf{F}\cdot \mathbf{N}~ds = \oint_C \mathbf{F}(\mathbf{r}(t))\cdot (dy\mathbf{i} - dx\mathbf{j}) = \oint_C P~dy - Q~dx
 \end{equation*}
 
 where $\mathbf{dn} = \mathbf{N}~ds$ pertains to a region enclosed by $C$.
@@ -385,7 +385,7 @@ for all pairs of variables. The idea of conservative fields and exact differenti
     \iint_A \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)~dA = \oint_{\partial A} P~dx + Q~dy
 \end{equation*}
 
-The line integral is counterclockwise around the boundary of $A$, which is denoted by $\partial A$. Green's theorem is convenient because it allows one to choose the easier of the two integrals to evaluate.
+where $P$ and $Q$ are continuous and have continuous first partial derivatives on area $A$. The line integral is counterclockwise around $\partial A$, the boundary of $A$. Going in the clockwise direction would introduce a negative sign. Green's theorem is convenient because it allows one to choose the easier of the two integrals to evaluate.
 
 \subsection{Tangent and Outward Normal Vectors}
 
@@ -400,7 +400,7 @@ where $\mathbf{n}$ is a unit vector and $ds = \sqrt{dx^2 + dy^2}$.
 
 \begin{align*}
     \iint_A \bm{\nabla} \cdot \mathbf{V}~dx~dy = \int_{\partial A} \mathbf{V} \cdot \mathbf{n}~ds \tag{2-dimensional}               \\
-    \iiint_\tau \bm{\nabla} \cdot \mathbf{V} d\tau  = \iint_{\partial \tau} \mathbf{V} \cdot \mathbf{n}~d\sigma \tag{3-dimensional} \\
+    \iiint_\tau \bm{\nabla} \cdot \mathbf{V}~d\tau  = \iint_{\partial \tau} \mathbf{V} \cdot \mathbf{n}~d\sigma \tag{3-dimensional} \\
 \end{align*}
 
 where $\tau$ represents volume and $d\sigma$ represents an element of surface area.
@@ -408,7 +408,14 @@ where $\tau$ represents volume and $d\sigma$ represents an element of surface ar
 \subsection{Stokes' Theorem}
 
 \begin{equation*}
-    \iint_\sigma (\bm{\nabla} \times \mathbf{V}) \cdot \mathbf{n}~d\sigma = \int_{\partial \sigma} \mathbf{V} \cdot d\mathbf{r}
+    \iint_\sigma (\bm{\nabla} \times \mathbf{V}) \cdot \mathbf{n}~d\sigma = \oint_{\partial \sigma} \mathbf{V} \cdot d\mathbf{r}
 \end{equation*}
 
 where $\sigma$ is an open surface and $\partial \sigma$ is its boundary curve. Stokes' theorem is the 3D generalization of Green's theorem.
+
+\vsp
+To calculate $\mathbf{n}~d\sigma$ for a surface, it is useful to parameterize to the flattened surface defined by $\mathbf{r}(u,v)$, resulting in
+
+\begin{equation*}
+    \mathbf{n}~d\sigma = (\mathbf{r}_u \times \mathbf{r}_v)~du~dv\text{.}
+\end{equation*}
