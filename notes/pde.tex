@@ -1,14 +1,18 @@
 \section{Partial Differential Equations}
 
-\subsection{Examples}
+\subsection{Introduction}
+
+Partial differential equations (PDEs) involve partial derivatives of a function with respect to multiple independent variables. They are widely used in physics and engineering to model various phenomena. The most common PDEs are:
 
 \begin{align*}
-    \nabla^2 u                               & = 0 \tag {Laplace's equation}                                           \\
-    \nabla^2 u                               & = f(x, y, z) \tag {Poisson's equation}                                  \\
-    \nabla^2 u                               & = \frac{1}{\alpha^2}\frac{\partial u}{\partial t}  \tag {Heat equation} \\
-    \nabla^2 u                               & = \frac{1}{v^2}\frac{\partial^2 u}{\partial t^2} \tag {Wave equation}   \\
-    -\frac{\hbar^2}{2m}\nabla^2 \Psi + V\Psi & = i\hbar\frac{\partial}{\partial t} \Psi \tag {Schrodinger's equation}
+    \nabla^2 u                               & = 0 \tag {Laplace's equation}                                            \\
+    \nabla^2 u                               & = f(x, y, z) \tag {Poisson's equation}                                   \\
+    \nabla^2 u                               & = \frac{1}{\alpha^2}\frac{\partial u}{\partial t}  \tag {Heat equation}  \\
+    \nabla^2 u                               & = \frac{1}{v^2}\frac{\partial^2 u}{\partial t^2} \tag {Wave equation}    \\
+    -\frac{\hbar^2}{2m}\nabla^2 \Psi + V\Psi & = i\hbar\frac{\partial}{\partial t} \Psi \tag {Schr\"odinger's equation}
 \end{align*}
+
+These often form a class of problems called \textbf{eigenvalue boundary value problems}. Note that all of these have a second derivative with respect to space, leading to the solution often being a sum of sines and cosines.
 
 \subsection{Common Problems}
 
@@ -31,12 +35,16 @@ Possible boundary conditions:
 
 The $T_x$ and $T_y$ boundary conditions imply insulation or zero flux at the boundaries. Usually, boundary conditions (2) and (3) are applied to the individual solutions to find the eigenvalues and eigenfunctions, and boundary condition (1) is applied to the general solution to find the series coefficients.
 
+\vsp
+
+The $y$ direction often has an expotential decay (e.g., $e^{-\lambda_n y}$) to fit the boundary condition $T(x, y) \to 0$ as $y \to \infty$.
+
 \subsubsection{Heat Flow Infinitely Thin Rod}
 
-Given an infinitely thin rod from $x = 0$ to $x = L$, the heat flow is given by
+Given an infinitely thin rod from $x = 0$ to $x = L$ that is insulated above and below (i.e., heat can only travel in the $x$ direction), the heat flow is given by
 
 \begin{equation*}
-    \frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2}\text{.}
+    u_t = \alpha^2 u_{xx}\text{, for } 0 < x < L \text{ and } t > 0
 \end{equation*}
 
 Possible boundary conditions:
@@ -46,18 +54,138 @@ Possible boundary conditions:
     u(L, t) & = 0 \text{ or } u_x(L, t) = 0
 \end{align*}
 
-Possible initial conditions:
+Initial condition:
 
 \begin{align*}
     u(x, 0) & = f(x)
 \end{align*}
 
-If the rod were instead a ring from $-L$ to $L$, there would be periodic bounary conditions:
+If the rod were instead a ring from $-L$ to $L$, there would be periodic boundary conditions:
 
 \begin{align*}
     u(-L, t)   & = u(L, t)   \\
     u_x(-L, t) & = u_x(L, t)
 \end{align*}
+
+The solution for the function of $t$ often involves exponential decay (e.g., $e^{-\alpha^2 \lambda_n t}$), which makes sense since heat dissipates over time.
+
+\subsubsection{Wave on Infinitely Thin String}
+
+Given an infinitely thin string of length $L$, the wave equation is given by
+
+\begin{equation*}
+    u_{tt} = c^2 u_{xx}\text{, for } 0 < x < L \text{ and } t > 0\text{,}
+\end{equation*}
+
+where $u(x, t)$ is the vertical displacement of the string at position $x$ and time $t$, and $c$ is the wave speed.
+
+\vsp
+
+Possible boundary conditions:
+
+\begin{align*}
+    u(0, t)   & = 0 = u(L, t)   \tag{fixed ends} \\
+    u_x(0, t) & = 0 = u_x(L, t) \tag{free ends}
+\end{align*}
+
+These may be mixed, e.g. one end fixed and the other free.
+
+\vsp
+
+Initial conditions:
+
+\begin{align*}
+    u(x, 0)   & = f(x) \\
+    u_t(x, 0) & = g(x)
+\end{align*}
+
+Because the PDE contains a second partial derivative with respect to time, there needs to be two initial conditions (namely one for displacement, and one for velocity) to find the solutions.
+
+\vsp
+
+The solution to a generic wave equation is
+
+\begin{equation*}
+    u(x, t) = f(x + ct) + g(x - ct)
+\end{equation*}
+
+where $f(x + ct)$ is a leftward moving wave and $g(x - ct)$ is a rightward moving wave. This is called \textbf{d'Alembert's solution}.
+
+\vsp
+
+A common initial condition is a plucked string, where the string is pulled up at a certain point and released from rest. This corresponds to the initial conditions
+
+\begin{align*}
+    u(x, 0)   & = f(x) \\
+    u_t(x, 0) & = 0
+\end{align*}
+
+where $f(x)$ is a triangular function.
+
+\subsubsection{Schr\"odinger's Equation}
+
+This class does not focus on Schr\"odinger's equation, but it is worth noting that there is often an oscillatory solution (unlike in the heat equation, which has a decaying solution) for the time-dependent part of Schr\"odinger's equation as well as the space-dependent part, owing to the existence of $i$ in the PDE:
+
+\begin{equation*}
+    i\hbar\frac{\partial}{\partial t} \Psi = -\frac{\hbar^2}{2m}\nabla^2 \Psi + V\Psi
+\end{equation*}
+
+\subsubsection{Steady-State in an Annulus}
+
+Given an annulus with inner radius $a$ and outer radius $b$, the steady-state temperature distribution is given by
+
+\begin{equation*}
+    \nabla^2 u = 0\text{, for } a < r < b\text{.}
+\end{equation*}
+
+Separation of variables in polar coordinates:
+
+\begin{equation*}
+    u(r, \theta) = R(r)\Theta(\theta)
+\end{equation*}
+
+Implied periodic angular boundary conditions:
+
+\begin{align*}
+    u(r, \theta)        & = u(r, \theta + 2\pi)        \\
+    u_\theta(r, \theta) & = u_\theta(r, \theta + 2\pi)
+\end{align*}
+
+Possible radial boundary conditions:
+
+\begin{align*}
+    u(a, \theta) & = f(\theta) \\
+    u(b, \theta) & = g(\theta)
+\end{align*}
+
+ODEs:
+
+\begin{align*}
+    \Theta'' + \lambda\Theta   & = 0                                     \\
+    r^2 R'' + r R' - \lambda R & = 0 \Leftrightarrow r(rR')' = \lambda R
+\end{align*}
+
+It is easier to apply the periodic boundary conditions first to solve for $\Theta(\theta)$, yielding sines and cosines. Then, apply the radial boundary conditions to solve for $R(r)$, making sure to check $\lambda = 0$ as well. These yield polynomials in $r$. After using the principle of superposition, the general solution mimics the Fourier series with the coefficients being slightly different as determined by the boundary condition.
+
+\subsection{Eigenvalues and Eigenfunctions}
+
+In many PDEs, the solution is of the form
+
+\begin{equation*}
+    u(x, y) = \sum_{n=1}^{\infty} c_n X_n(x)Y_n(y)
+\end{equation*}
+
+where $X_n(x)$ and $Y_n(y)$ are the \textbf{eigenfunctions} and the $\lambda_n$ contained within them are the \textbf{eigenvalues}. For example, if $X_n(x) = \sin(\frac{n\pi x}{L})$, then the eigenvalues are $\lambda_n = (\frac{n\pi}{L})^2$, which are paired one-to-one for each $n$.
+
+\vsp
+
+The eigenfunctions form an orthogonal basis, e.g.
+
+\begin{equation*}
+    \{1, X_1, X_2, \dots, X_n, \dots\}
+\end{equation*}
+
+analogous to standard basis vectors. Note: the 1 is included for the case where $\lambda = 0$.
 
 \subsection{General Strategy}
 
@@ -89,6 +217,14 @@ If the rod were instead a ring from $-L$ to $L$, there would be periodic bounary
           \end{equation*}
 
           if the eigenfunction is sine. In general, the equation for $c_n$ is the inner product of the eigenfunction and the initial condition, normalized by the norm of the eigenfunction (e.g. the $2/L$ in the example above).
+    \item For non-homogeneous problems, first solve the homogeneous problem to find the general solution. For example, if the PDE is
+
+          \begin{equation*}
+              u(x, t) = v(x, t) + u_f(x)\text{,}
+          \end{equation*}
+
+          where $u_f(x)$ is the \textbf{steady-state solution} and $v(x,t)$ is the \textbf{transient solution}, solve for $v(x, t)$ with homogenous boundary conditions and initial condition $v(x, 0) = u(x, 0) - u_f(x)$.
+    \item Apply common simplifications, such as $\cos(n\pi) = (-1)^n$, $\sin(n\pi) = 0$, and considering odd and even cases (one of which is sometimes 0). If only odd terms remain, use $2n - 1$ instead of $n$ (or $2n + 1$ with starting index $n = 0$) in the general solution. If only even terms remain, use $2n$ instead of $n$ in the general solution.
 
 \end{enumerate}
 
@@ -114,14 +250,16 @@ If the PDE is separable, dividing by $XY$ will separate the variables:
 
 The $-\lambda$ is called the \textbf{separation constant}, and it is usually chosen to be negative to fit the boundary conditions.
 
-\subsection{ODE with Constant Coefficients}
+\subsection{Solutions to Common ODEs}
 
 \begin{table}[H]
     \centering
     \begin{tabular}{r|l}
-        $x'' = 0$             & $x = c_1 + c_2x$                                          \\
-        $x'' + \lambda x = 0$ & $x = c_1\cos(\sqrt{\lambda}x) + c_2\sin(\sqrt{\lambda}x)$ \\
-        $x'' - \lambda x = 0$ & $x = c_1e^{\sqrt{\lambda}x} + c_2e^{-\sqrt{\lambda}x}$    \\
+        $x' + \lambda x = 0$             & $x = c_1e^{-\lambda x}$                                   \\
+        $x'' = 0$                        & $x = c_1 + c_2x$                                          \\
+        $x'' + \lambda x = 0$            & $x = c_1\cos(\sqrt{\lambda}x) + c_2\sin(\sqrt{\lambda}x)$ \\
+        $x'' - \lambda x = 0$            & $x = c_1e^{\sqrt{\lambda}x} + c_2e^{-\sqrt{\lambda}x}$    \\
+        $r^2 x'' + r x' - \lambda x = 0$ & $x = c_1r^{\sqrt{\lambda}} + c_2r^{-\sqrt{\lambda}}$
     \end{tabular}
 \end{table}
 

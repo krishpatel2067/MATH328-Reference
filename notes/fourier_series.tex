@@ -1,3 +1,28 @@
+\section{Fourier Series}
+
+\subsection{Introduction}
+
+Given a $2L$-periodic function $f(x)$, its Fourier series is given by
+
+\begin{equation*}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left[ a_n \cos\left(\frac{n\pi x}{L}\right) + b_n \sin\left(\frac{n\pi x}{L}\right) \right]
+\end{equation*}
+
+where
+
+\begin{align*}
+    a_n & = \frac{1}{L}\int_{-L}^L f(x)\cos\left(\frac{n\pi x}{L}\right)~dx         \\
+    b_n & = \frac{1}{L}\int_{-L}^L f(x)\sin\left(\frac{n\pi x}{L}\right)~dx\text{.}
+\end{align*}
+
+Note that the $a_n$ formula applies for $a_0$ too with $\cos(0) = 1$.
+
+\vsp
+
+The convergence of the Fourier series relies heavily on the coefficients $a_n$ and $b_n$ since the trigonometric functions simply oscillate between $-1$ and $1$.
+
+\subsection{Dirichlet Conditions}
+
 % pg. 376 thm of Dirichlet (conv not necessarily true)
 % pg. 378 (complex form of Fourier series)
 % c_n = c_{-n}^* iff f is real-valued
